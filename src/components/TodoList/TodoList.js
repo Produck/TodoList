@@ -1,11 +1,16 @@
 import React from 'react';
 import TodoItem from '../TodoItem';
 
-const TodoList = () => {
+const TodoList = ({todos, onToggle, onRemove}) => {
+    const todoList = todos.map(
+        todo => (
+            <TodoItem key={todo.id} done={todo.done} onToggle={() => onToggle(todo.id)} onRemove={() => onRemove(todo.id)}>{todo.text}</TodoItem>
+        )
+    )
+
     return (
         <div>
-            <TodoItem done>리액트 공부하기</TodoItem>
-            <TodoItem>컴포넌트 스타일링 해보기</TodoItem>
+            {todoList}
         </div>
     );
 };
